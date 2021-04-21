@@ -1,4 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500&display=swap');
+
+:root {
+  --dark-color: #14213d;
+  --accent-color: #2a9d8f;
+  --primary-color: #fca311;
+  --light-color: #e5e5e5;
+}
+
 body, html {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto Mono', monospace;
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+.section-title {
+  margin: 2rem 4rem 0 4rem;;
+}
+
+.coins-info {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.coin-info {
+  width: 150px;
+  text-align: center;
+}
+
+.coin-info .coin-name {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.coin-info .coin-quantity {
+  position: relative;
+  text-align: center;
+  padding: 1rem;
+  margin: 0;
+  border: solid 3px var(--primary-color);
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  background-color: var(--dark-color);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.coin-info .coin-total {
+  display: table;
+  margin: 0 auto;
+  padding: 0.5rem 0.7rem;
+  background-color: var(--primary-color);
+  color: var(--dark-color);
+  border-radius: 0 0 0.5rem 0.5rem;
+  transform: translateY(-100%);
+  transition: 0.3s;
+}
+
+.coin-quantity:hover + .coin-total {
+  transform: translateY(0%);
 }

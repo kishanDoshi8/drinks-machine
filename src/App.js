@@ -10,6 +10,7 @@ import useModal from './customHooks/useModal';
 import GetDrinksModal from './components/Modals/GetDrinksModal';
 import _ from 'lodash';
 import ErrorModal from './components/Modals/ErrorModal';
+import ResumeModal from './components/Modals/ResumeModal';
 
 function App() {
     const [coins, setCoins] = useState([]);
@@ -118,9 +119,16 @@ function App() {
         // Inventory updation
         setCoins([...coinsUpdated]);
         setDrinks([...drinksUpdated]);
-        setOrders([]);
 
         // Show orders resume
+        confirmModal.toggle();
+        resumeModal.toggle();
+    }
+
+    const closeResumeModal = () => {
+        resumeModal.toggle();
+        // Clear order after completing and reviewing the purchase
+        setOrders([]);
     }
 
 
@@ -134,6 +142,7 @@ function App() {
             <GetDrinks disabled={error || orders.length === 0 ? true : false} toggleModal={confirmModal.toggle} />
             <GetDrinksModal isShowing={confirmModal.isShowing} toggle={confirmModal.toggle} orders={orders} confirmOrder={confirmOrder} />
             <ErrorModal isShowing={errorModal.isShowing} toggle={errorModal.toggle} error={error} />
+            <ResumeModal isShowing={resumeModal.isShowing} toggle={closeResumeModal} orders={orders} />
         </div>
     );
 }

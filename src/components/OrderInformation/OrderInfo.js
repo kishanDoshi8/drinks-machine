@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { formatAmountWithSymbol } from '../../formats';
 
 export default function OrderInfo({ orders }) {
     const [totalAmount, setTotalAmount] = useState(0)
@@ -25,7 +26,7 @@ export default function OrderInfo({ orders }) {
                         <div className="order-product-total"> {order.cost * order.quantity} &#162; </div>
                     </div>
                 ))}
-                <h4 className="order-total"> {totalAmount/100} <i className="fas fa-dollar-sign"></i> </h4>
+                <h4 className="order-total"> {formatAmountWithSymbol(totalAmount)} </h4>
             </div>
         </div>
     )

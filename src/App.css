@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;700&display=swap');
 
 :root {
   --dark-color: #14213d;
   --accent-color: #2a9d8f;
+  --accent-color-rgb: 42, 157, 143;
   --primary-color: #fca311;
   --primary-color-rgb: 252, 163, 17;
   --light-color: #e5e5e5;
@@ -152,7 +153,7 @@ body, html {
 }
 
 .order-details .order-product-cost {
-  margin: 10px;
+  margin: 10px 0 0 0;
   color: rgba(var(--primary-color-rgb), 0.8);
 }
 
@@ -165,6 +166,61 @@ body, html {
   text-align: right;
   margin-right: 2rem;
   font-size: 1.7rem;
+}
+
+/* 
+  Get Drinks component styles
+*/
+.get-drinks {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2rem;
+}
+
+#get-drinks-btn {
+  position: relative;
+  padding: 1rem 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 500 !important;
+  font-family: 'Roboto Mono', monospace;
+  border-radius: 1.2rem;
+  background-color: transparent;
+  color: var(--accent-color);
+  border: solid 4px var(--accent-color);
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+#get-drinks-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: var(--accent-color);
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease-in-out;
+  outline: none;
+  border-radius: 1rem;
+}
+
+#get-drinks-btn:hover::before {
+  transform: scaleY(1);
+}
+
+#get-drinks-btn:hover {
+  color: var(--dark-color);
+}
+
+#get-drinks-btn.disabled {
+  pointer-events: none;
+  border: solid 4px rgba(var(--accent-color-rgb), 0.5);
+  color: rgba(var(--accent-color-rgb), 0.5)
 }
 
 /* Helper class */

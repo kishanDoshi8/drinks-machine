@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { formatAmountWithSymbol } from '../../formats';
 
 export default function CoinsInfo({ coins }) {
 
@@ -25,7 +26,7 @@ export default function CoinsInfo({ coins }) {
                 ))}
                 <div className="coin-info">
                     <h4 className="coin-name">Total</h4>
-                    <p className="coin-quantity">{totalAmount/100} <i className="fas fa-dollar-sign"></i></p>
+                    <p className="coin-quantity">{formatAmountWithSymbol(totalAmount)} </p>
                 </div>
             </div>
         </>

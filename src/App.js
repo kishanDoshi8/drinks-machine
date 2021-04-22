@@ -5,6 +5,7 @@ import { getCoinsInfo } from './init/getCoinsInfo';
 import DrinksInfo from './components/ProductsInformation/DrinksInfo';
 import OrderInfo from './components/OrderInformation/OrderInfo';
 import { getDrinksInfo } from './init/getDrinksInfo';
+import GetDrinks from './components/OrderInformation/GetDrinks';
 
 function App() {
     const [coins, setCoins] = useState([]);
@@ -23,6 +24,7 @@ function App() {
                 <DrinksInfo drinks={drinks} setOrders={setOrders} />
                 <OrderInfo orders={orders}/>
             </div>
+            <GetDrinks />
         </div>
     );
 }

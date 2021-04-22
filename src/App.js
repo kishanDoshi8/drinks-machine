@@ -9,6 +9,7 @@ import GetDrinks from './components/OrderInformation/GetDrinks';
 import useModal from './customHooks/useModal';
 import GetDrinksModal from './components/Modals/GetDrinksModal';
 import _ from 'lodash';
+import ErrorModal from './components/Modals/ErrorModal';
 
 function App() {
     const [coins, setCoins] = useState([]);
@@ -17,7 +18,10 @@ function App() {
 
     const[error, setError] = useState('');
 
-    const { isShowing, toggle } = useModal();
+    // const { isShowing, toggle } = useModal();
+    const confirmModal = useModal();
+    const errorModal = useModal();
+    const resumeModal = useModal();
 
     useEffect(() => {
         // Sort the coins in descending order to its value
@@ -28,26 +32,32 @@ function App() {
 
     useEffect(() => {
         let invalid = false;
-        let product = {};
+        // let product = {};
+        let e = '';
         orders.forEach(order => {
-            if(order.quantity < 0 || order.quantity > order.stock) {
-                console.log(order);
+            if(order.quantity < 0) {
                 invalid = true;
-                product = order;
+                e = `Input value should be more than 0`;
+            } else if(order.quantity > order.stock) {
+                invalid = true;
+                e = `Only ${order.stock} in stock for ${order.name}`;
             }
         });
         
         if(invalid) {
-            setError(`Invalid input value for product: ${product.name}`)
+            setError(e)
         } else {
             setError('');
         }
     }, [orders]);
 
     useEffect(() => {
-        
-        console.log(error);
-    }, [error])
+        if(error) {
+            if(!errorModal.isShowing) {
+                errorModal.toggle();
+            }
+        }
+    }, [error, orders])
 
     const getUpdatedCoinsInfo = () => {
         // Get the total amount
@@ -93,6 +103,14 @@ function App() {
         let coinsUpdated = getUpdatedCoinsInfo();
         let drinksUpdated = getUpdatedDrinksInfo();
         
+        // Show error if any error
+        if(error) {
+            if(!errorModal.isShowing) {
+                errorModal.toggle();
+            }
+            return;
+        }
+
         // Inventory validation
         if(coinsUpdated.length === 0) return setError('Not sufficient change in the inventory.');
         if(drinksUpdated.length === 0) return setError('Drink is sold out, your purchase cannot be processed');
@@ -113,8 +131,9 @@ function App() {
                 <DrinksInfo drinks={drinks} setOrders={setOrders} />
                 <OrderInfo orders={orders}/>
             </div>
-            <GetDrinks disabled={error || orders.length === 0 ? true : false} toggleModal={toggle} />
-            <GetDrinksModal isShowing={isShowing} toggle={toggle} orders={orders} confirmOrder={confirmOrder} />
+            <GetDrinks disabled={error || orders.length === 0 ? true : false} toggleModal={confirmModal.toggle} />
+            <GetDrinksModal isShowing={confirmModal.isShowing} toggle={confirmModal.toggle} orders={orders} confirmOrder={confirmOrder} />
+            <ErrorModal isShowing={errorModal.isShowing} toggle={errorModal.toggle} error={error} />
         </div>
     );
 }

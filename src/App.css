@@ -220,7 +220,91 @@ body, html {
 #get-drinks-btn.disabled {
   pointer-events: none;
   border: solid 4px rgba(var(--accent-color-rgb), 0.5);
-  color: rgba(var(--accent-color-rgb), 0.5)
+  color: rgba(var(--accent-color-rgb), 0.5);
+}
+
+/* 
+  Modal Component styles
+
+*/
+.modal {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.modal-content {
+  min-width: 300px;
+  max-width: 800px;
+  width: 50vw;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: solid 4px var(--accent-color);
+  -webkit-box-shadow: 0px 10px 13px -7px rgba(var(--dark-color-rgb, 0/3)), 5px 5px 5px 5px rgba(var(--dark-color-rgb, 0/3)); 
+  box-shadow: 0px 10px 13px -7px rgba(var(--dark-color-rgb, 0/3)), 5px 5px 5px 5px rgba(var(--dark-color-rgb, 0/3));
+  background-color: var(--dark-color);
+  transform: translateY(-50px);
+  opacity: 0;
+  animation: scale-to-one 0.3s linear 0.2s;
+  animation-fill-mode: forwards;
+  line-height: 2.2rem;
+  overflow: hidden;
+}
+
+.modal-content span {
+  color: var(--primary-color);
+}
+
+.modal-toggle {
+  display: block;
+  margin-left: auto;
+  margin-right: 1rem;
+  background-color: transparent;
+  font-size: 3rem;
+  outline: none;
+  border: none;
+  border-bottom: solid 2px var(--accent-color);
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+
+.modal-confirm, .modal-cancel {
+  padding: 1rem 2rem;
+  margin-top: 2rem;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  font-weight: 500 !important;
+  font-family: 'Roboto Mono', monospace;
+  border: solid 4px var(--accent-color);
+  outline: none;
+  color: var(--accent-color);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.modal-confirm {
+  background-color: var(--accent-color);
+  color: var(--dark-color);
+  transition: 0.3s;
+}
+
+.modal-confirm:hover {
+  transform: translateY(-5px);
 }
 
 /* Helper class */
@@ -232,4 +316,16 @@ body, html {
 .section-title {
   margin: 2rem 4rem 0 4rem;
   text-align: center;
+}
+
+/* Key frames */
+@keyframes scale-to-one {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

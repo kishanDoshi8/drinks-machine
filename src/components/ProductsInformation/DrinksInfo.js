@@ -1,10 +1,15 @@
 import React from 'react'
 
-export default function DrinksInfo({ drinks, setOrders }) {
+export default function DrinksInfo({ drinks, setOrders, setError }) {
 
     const onChange = e => {
         // Get drink data
         let drink = drinks.find(d => d.id === +e.target.id);
+        if(+e.target.value < 0 || +e.target.value > drink.quantity) {
+            setError('Invalid Quantity Value');
+            return;
+        }
+        setError('');
         // Create an order object
         let order = {
             ...drink,

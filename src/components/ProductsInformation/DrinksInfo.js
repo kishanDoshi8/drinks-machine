@@ -43,7 +43,7 @@ export default function DrinksInfo({ drinks, setOrders }) {
                         <div key={drink.id} className="product-info" >
                             <div >
                                 <h4 className="product-name"> {drink.name} </h4>
-                                <span className="product-cost">Cost: {drink.cost} &#162;</span>
+                                <span className="product-cost">Cost: &#162; {drink.cost}</span>
                                 <span className="product-stock">In stock: {drink.stock} </span>
                             </div>
                             <input className="product-input" type="number" defaultValue="0" min="0" max={drink.stock} name={drink.name} id={drink.id} onChange={e => onChange(e)} />

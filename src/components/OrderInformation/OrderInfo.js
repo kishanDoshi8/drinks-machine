@@ -21,9 +21,9 @@ export default function OrderInfo({ orders }) {
                     <div className="order" key={order.id}>
                         <div>
                             <h4 className="order-product-name"> {order.name} <span> X {order.quantity}</span> </h4>
-                            <p className="order-product-cost">Cost: {order.cost} &#162;</p>
+                            <p className="order-product-cost">Cost: &#162; {order.cost}</p>
                         </div>
-                        <div className="order-product-total"> {order.cost * order.quantity} &#162; </div>
+                        <div className="order-product-total"> &#162; {order.cost * order.quantity}</div>
                     </div>
                 ))}
                 <h4 className="order-total">Total: {formatAmountWithSymbol(totalAmount)} </h4>

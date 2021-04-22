@@ -33,7 +33,6 @@ function App() {
 
     useEffect(() => {
         let invalid = false;
-        // let product = {};
         let e = '';
         orders.forEach(order => {
             if(order.quantity < 0) {

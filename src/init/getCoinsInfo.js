@@ -17,6 +17,8 @@ export const getCoinsInfo = () => {
     let nickles = new Coin(2, 'Nickles', 5, 10);
     let dimes = new Coin(3, 'Dimes', 10, 5);
     let quaters = new Coin(4, 'Quaters', 25, 25);
+    // let loonies = new Coin(5, 'Loonies', 100, 5);
 
     return [pennies, nickles, dimes, quaters];
+    // return [pennies, nickles, dimes, quaters, loonies];
 }

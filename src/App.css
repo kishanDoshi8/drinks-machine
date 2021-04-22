@@ -73,11 +73,12 @@ body, html {
 .products-order {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 4rem;
 }
 
 .products {
-  flex: 1;
+  flex-grow: 1;
+  flex-shrink: 600px;
 }
 
 .products-info * {
@@ -122,7 +123,48 @@ body, html {
   Order details component styling
  */
 .order-details {
-  flex: 1;
+  flex-grow: 1;
+  max-height: 600px;
+  overflow: auto;
+}
+
+.order-details .order {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: solid 2px var(--primary-color);
+}
+
+.order-details .order:first-child {
+  margin-top: 2rem;
+  border-top: solid 2px var(--primary-color);
+}
+
+.order-details .order-product-name {
+  font-size: 2rem;
+  margin: 0;
+}
+
+.order-details .order-product-name span {
+  font-size: 1.2rem;
+  margin: 0 1rem;
+}
+
+.order-details .order-product-cost {
+  margin: 10px;
+  color: rgba(var(--primary-color-rgb), 0.8);
+}
+
+.order-details .order-product-total {
+  font-size: 1.7rem;
+  align-self: flex-end;
+}
+
+.order-details .order-total {
+  text-align: right;
+  margin-right: 2rem;
+  font-size: 1.7rem;
 }
 
 /* Helper class */

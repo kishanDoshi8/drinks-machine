@@ -9,18 +9,19 @@ import { getDrinksInfo } from './init/getDrinksInfo';
 function App() {
     const [coins, setCoins] = useState([]);
     const [drinks, setDrinks] = useState([]);
+    const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         setCoins(getCoinsInfo());
         setDrinks(getDrinksInfo());
-    }, [])
+    }, []);
 
     return (
         <div className="App container">
             <CoinsInfo coins={coins} />
             <div className="products-order">
-                <DrinksInfo drinks={drinks} setDrinks={setDrinks} />
-                <OrderInfo />
+                <DrinksInfo drinks={drinks} setOrders={setOrders} />
+                <OrderInfo orders={orders}/>
             </div>
         </div>
     );

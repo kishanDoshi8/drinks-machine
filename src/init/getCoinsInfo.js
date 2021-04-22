@@ -13,10 +13,10 @@ class Coin {
 
 // Add database or RestAPI queries (if any) for coins info in this method 
 export const getCoinsInfo = () => {
-    let pennies = new Coin(1, 'Pennies', 0.01, 100);
-    let nickles = new Coin(2, 'Nickles', 0.05, 10);
-    let dimes = new Coin(3, 'Dimes', 0.10, 5);
-    let quaters = new Coin(4, 'Quaters', 0.25, 25);
+    let pennies = new Coin(1, 'Pennies', 1, 100);
+    let nickles = new Coin(2, 'Nickles', 5, 10);
+    let dimes = new Coin(3, 'Dimes', 10, 5);
+    let quaters = new Coin(4, 'Quaters', 25, 25);
 
     return [pennies, nickles, dimes, quaters];
 }

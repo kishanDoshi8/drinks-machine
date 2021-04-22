@@ -26,15 +26,30 @@ function App() {
         setDrinks(getDrinksInfo());
     }, []);
 
-    // useEffect(() => {
-    //     console.log(coins);
-    // }, [coins]);
+    useEffect(() => {
+        let invalid = false;
+        let product = {};
+        orders.forEach(order => {
+            if(order.quantity < 0 || order.quantity > order.stock) {
+                console.log(order);
+                invalid = true;
+                product = order;
+            }
+        });
+        
+        if(invalid) {
+            setError(`Invalid input value for product: ${product.name}`)
+        } else {
+            setError('');
+        }
+    }, [orders]);
 
     useEffect(() => {
+        
+        console.log(error);
+    }, [error])
 
-    }, [error]);
-
-    const confirmOrder = () => {
+    const getUpdatedCoinsInfo = () => {
         // Get the total amount
         let totalAmount = 0;
         orders.forEach(order => {
@@ -51,20 +66,51 @@ function App() {
             }
         }
 
-        // Only update coins if there is enough change in the inventory or else show error.
-        if(totalAmount === 0) {
-            setCoins([...coinsCopy]);
-            toggle();
-        } else {
-            setError('Not sufficient change in the inventory.')
-        }
+        if(totalAmount === 0) return coinsCopy;
+
+        return [];
     }
+
+    const getUpdatedDrinksInfo = () => {
+        let drinksCopy = _.cloneDeep(drinks);
+        return drinksCopy.map(drink => {
+            let currentOrder = orders.find(d => d.id === drink.id);
+            if(currentOrder) {
+                let d = {
+                    ...drink,
+                    stock: currentOrder.stock - currentOrder.quantity,
+                }
+                delete d.quantity;
+                return d;
+            } else {
+                return drink;
+            }
+        })
+    }
+
+    const confirmOrder = () => {
+        // Get updated inventory and validate
+        let coinsUpdated = getUpdatedCoinsInfo();
+        let drinksUpdated = getUpdatedDrinksInfo();
+        
+        // Inventory validation
+        if(coinsUpdated.length === 0) return setError('Not sufficient change in the inventory.');
+        if(drinksUpdated.length === 0) return setError('Drink is sold out, your purchase cannot be processed');
+
+        // Inventory updation
+        setCoins([...coinsUpdated]);
+        setDrinks([...drinksUpdated]);
+        setOrders([]);
+
+        // Show orders resume
+    }
+
 
     return (
         <div className="App container">
             <CoinsInfo coins={coins} />
             <div className="products-order">
-                <DrinksInfo drinks={drinks} setOrders={setOrders} setError={setError} />
+                <DrinksInfo drinks={drinks} setOrders={setOrders} />
                 <OrderInfo orders={orders}/>
             </div>
             <GetDrinks disabled={error || orders.length === 0 ? true : false} toggleModal={toggle} />

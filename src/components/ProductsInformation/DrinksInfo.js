@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
-export default function DrinksInfo({ drinks, setOrders, setError }) {
+export default function DrinksInfo({ drinks, setOrders }) {
+
+    // Reset the form input after purchasing (drinks are updated)
+    const formRef = useRef(null);
+    useEffect(() => {
+        formRef.current.reset();
+    }, [drinks])
 
     const onChange = e => {
         // Get drink data
         let drink = drinks.find(d => d.id === +e.target.id);
-        if(+e.target.value < 0 || +e.target.value > drink.quantity) {
-            setError('Invalid Quantity Value');
-            return;
-        }
-        setError('');
         // Create an order object
         let order = {
             ...drink,
@@ -36,18 +37,20 @@ export default function DrinksInfo({ drinks, setOrders, setError }) {
         <div className="products">
             <h2 className="section-title">Drinks!</h2>
 
-            <div className="products-info">
-                {drinks.map(drink => (
-                    <div key={drink.id} className="product-info" >
-                        <div >
-                            <h4 className="product-name"> {drink.name} </h4>
-                            <span className="product-cost">Cost: {drink.cost} &#162;</span>
-                            <span className="product-stock">In stock: {drink.quantity} </span>
+            <form ref={formRef}>
+                <div className="products-info">
+                    {drinks.map(drink => (
+                        <div key={drink.id} className="product-info" >
+                            <div >
+                                <h4 className="product-name"> {drink.name} </h4>
+                                <span className="product-cost">Cost: {drink.cost} &#162;</span>
+                                <span className="product-stock">In stock: {drink.stock} </span>
+                            </div>
+                            <input className="product-input" type="number" defaultValue="0" min="0" max={drink.stock} name={drink.name} id={drink.id} onChange={e => onChange(e)} />
                         </div>
-                        <input className="product-input" type="number" min="0" max={drink.quantity} name={drink.name} id={drink.id} onChange={e => onChange(e)} />
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
+            </form>
         </div>
     )
 }

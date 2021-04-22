@@ -21,7 +21,7 @@ export default function CoinsInfo({ coins }) {
                     <div key={coin.amount} className="coin-info">
                         <h4 className="coin-name">{coin.name}</h4>
                         <p className="coin-quantity">{coin.quantity}</p>
-                        <p className="coin-total"> {(coin.amount * coin.quantity)/100} <i className="fas fa-dollar-sign"></i></p>
+                        <p className="coin-total"> {(coin.amount * coin.quantity)/100 + " " + String.fromCharCode(36)} </p>
                     </div>
                 ))}
                 <div className="coin-info">

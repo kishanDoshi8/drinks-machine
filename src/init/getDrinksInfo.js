@@ -1,9 +1,9 @@
 class Drink {
-    constructor(id, name, cost, quantity) {
+    constructor(id, name, cost, stock) {
         this.id = id;
         this.name = name;
         this.cost = cost;
-        this.quantity = quantity;
+        this.stock = stock;
     }
 }
 

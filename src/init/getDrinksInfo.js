@@ -1,5 +1,6 @@
 class Drink {
-    constructor(name, cost, quantity) {
+    constructor(id, name, cost, quantity) {
+        this.id = id;
         this.name = name;
         this.cost = cost;
         this.quantity = quantity;
@@ -7,9 +8,9 @@ class Drink {
 }
 
 export const getDrinksInfo = () => {
-    const coke = new Drink('Coke', 25, 5);
-    const pepsi = new Drink('Pepsi', 36, 15);
-    const soda = new Drink('Soda', 45, 3);
+    const coke = new Drink(1, 'Coke', 25, 5);
+    const pepsi = new Drink(2, 'Pepsi', 36, 15);
+    const soda = new Drink(3, 'Soda', 45, 3);
 
     return [coke, pepsi, soda];
 }

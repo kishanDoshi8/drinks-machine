@@ -4,7 +4,9 @@
   --dark-color: #14213d;
   --accent-color: #2a9d8f;
   --primary-color: #fca311;
+  --primary-color-rgb: 252, 163, 17;
   --light-color: #e5e5e5;
+  --light-color-rgb: 229, 229, 229;
 }
 
 body, html {
@@ -15,10 +17,9 @@ body, html {
   color: var(--light-color);
 }
 
-.section-title {
-  margin: 2rem 4rem 0 4rem;;
-}
-
+/* 
+  Coins information component styling
+ */
 .coins-info {
   display: flex;
   justify-content: space-evenly;
@@ -64,4 +65,73 @@ body, html {
 
 .coin-quantity:hover + .coin-total {
   transform: translateY(0%);
+}
+
+/* 
+  Products information component styling
+ */
+.products-order {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.products {
+  flex: 1;
+}
+
+.products-info * {
+  margin: 0;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  margin: 1.5rem;
+}
+
+.products-info .product-name {
+  font-size: 2.5rem;
+}
+
+.product-cost {
+  color: rgba(var(--primary-color-rgb), 0.8);
+  font-size: 1.1rem;
+  margin-right: 1rem;
+}
+
+.product-info .product-stock {
+  color: rgba(var(--light-color-rgb), 0.7);
+}
+
+.product-info .product-input {
+  position: relative;
+  padding: 1rem;
+  border-radius: 1rem;
+  outline: none;
+  border: solid 4px var(--primary-color);
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  width: 8ch;
+}
+
+/* 
+  Order details component styling
+ */
+.order-details {
+  flex: 1;
+}
+
+/* Helper class */
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-title {
+  margin: 2rem 4rem 0 4rem;
+  text-align: center;
 }

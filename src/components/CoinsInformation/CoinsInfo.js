@@ -14,7 +14,7 @@ export default function CoinsInfo({coins}) {
 
     return (
         <>
-            <h1 className="section-title">You have</h1>
+            <h2 className="section-title">You have</h2>
             <div className="coins-info">
                 {coins.map((coin) => (
                     <div key={coin.amount} className="coin-info">
